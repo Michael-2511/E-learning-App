@@ -1,7 +1,6 @@
 public class User {
     private String name;
     private String email;
-
     public User() {}    // default constructor
 
     public User(String name, String email) {

@@ -1,12 +1,10 @@
 import java.util.List;
 public class Question {
     private String statement;
-    private List<String> answerChoices;
-    private int correctAnswer; // sau private String
+    private String correctAnswer; // sau private String
 
-    public Question(String statement, List<String> answerChoices, int correctAnswer) {
+    public Question(String statement, String correctAnswer) {
         this.statement = statement;
-        this.answerChoices = answerChoices;
         this.correctAnswer = correctAnswer;
     }
 
@@ -18,19 +16,11 @@ public class Question {
         this.statement = statement;
     }
 
-    public List<String> getAnswerChoices() {
-        return answerChoices;
-    }
-
-    public void setAnswerChoices(List<String> answerChoices) {
-        this.answerChoices = answerChoices;
-    }
-
-    public int getCorrectAnswer() {
+    public String getCorrectAnswer() {
         return correctAnswer;
     }
 
-    public void setCorrectAnswer(int correctAnswer) {
+    public void setCorrectAnswer(String correctAnswer) {
         this.correctAnswer = correctAnswer;
     }
 }

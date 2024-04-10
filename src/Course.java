@@ -2,15 +2,17 @@ import java.util.ArrayList;
 import java.util.List;
 public class Course {
     private String title;
-    private List<Lesson> lessons;
-    private List<Quiz> quizzes;
-    private List<Student> enrolledStudents;
+    private List<Lesson> lessons;               // adaug lesson la course
+    private List<Quiz> quizzes;                 // adaug quiz la course
+    private List<Student> enrolledStudents;     // adaug course la student
+    private Professor professor;
 
     public Course(String title) {
         this.title = title;
         this.lessons = new ArrayList<>();
         this.quizzes = new ArrayList<>();
         this.enrolledStudents = new ArrayList<>();
+        this.professor = null;
     }
 
     public String getTitle() {
@@ -35,6 +37,14 @@ public class Course {
 
     public void addQuiz(Quiz quiz) {
         this.quizzes.add(quiz);
+    }
+
+    public Professor getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Professor professor) {
+        this.professor = professor;
     }
 
     public List<Student> getEnrolledStudents() {

@@ -1,10 +1,10 @@
 public class Lesson {
     private String title;
-    private String content;
+    private String description;
 
-    public Lesson(String title, String content) {
+    public Lesson(String title, String description) {
         this.title = title;
-        this.content = content;
+        this.description = description;
     }
 
     public String getTitle() {
@@ -15,19 +15,19 @@ public class Lesson {
         this.title = title;
     }
 
-    public String getContent() {
-        return content;
+    public String getDescription() {
+        return description;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
     public String toString() {
         return "Lesson{" +
                 "title='" + title + '\'' +
-                ", content='" + content + '\'' +
+                ", description='" + description + '\'' +
                 '}';
     }
 }
