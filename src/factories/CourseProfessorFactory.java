@@ -14,6 +14,6 @@ public class CourseProfessorFactory {
     }
 
     public static CourseProfessor createCourseProfessor(ResultSet in) throws SQLException {
-        return new CourseProfessor(id++, in);
+        return new CourseProfessor(in);
     }
 }

@@ -15,6 +15,6 @@ public class LessonFactory {
     }
 
     public static Lesson createLesson(ResultSet in) throws SQLException {
-        return new Lesson(id++, in);
+        return new Lesson(in);
     }
 }

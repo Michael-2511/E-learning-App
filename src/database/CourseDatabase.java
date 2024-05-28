@@ -12,8 +12,6 @@ import java.util.List;
 public class CourseDatabase {
     Connection connection;
 
-    CourseFactory courseFactory = new CourseFactory();
-
     public CourseDatabase(Connection connection) {
         this.connection = connection;
     }

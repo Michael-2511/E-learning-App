@@ -14,6 +14,6 @@ public class CourseQuizFactory {
     }
 
     public static CourseQuiz createCourseQuiz(ResultSet in) throws SQLException {
-        return new CourseQuiz(id++, in);
+        return new CourseQuiz(in);
     }
 }

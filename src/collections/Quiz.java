@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Quiz {
-    private final int quizId;
+    private int quizId;
     private String title;
 
     public Quiz(int quizId, String title) {
@@ -18,8 +18,8 @@ public class Quiz {
         this.readData(in);
     }
 
-    public Quiz(int quizId, ResultSet in) throws SQLException {
-        this.quizId = quizId;
+    public Quiz(ResultSet in) throws SQLException {
+//        this.quizId = quizId;
         this.readData(in);
     }
 
@@ -30,6 +30,7 @@ public class Quiz {
     }
 
     public void readData(ResultSet in) throws SQLException {
+        this.quizId = in.getInt("quizId");
         this.title = in.getString("title");
     }
     public int getQuizId() {

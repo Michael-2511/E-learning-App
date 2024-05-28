@@ -29,6 +29,20 @@ public class QuizQuestionDatabase {
         }
         return quizQuestions;
     }
+
+    public void create(QuizQuestion quizQuestion) {
+        try {
+            String query = "INSERT INTO QuizQuestion (quizId, questionId) VALUES (?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, quizQuestion.quizId);
+            preparedStatement.setInt(2, quizQuestion.questionId);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void delete(QuizQuestion quizQuestion) {
         try {
             String query = "DELETE FROM QuizQuestion WHERE questionId = ?";

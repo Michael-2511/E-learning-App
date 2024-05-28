@@ -7,6 +7,7 @@ import java.text.ParseException;
 import java.util.*;
 
 public class ElearningService {
+    private static ElearningService instance;
     private List<Course> courseList;
     private List<Lesson> lessonList;
     private List<Student> studentList;
@@ -72,11 +73,29 @@ public class ElearningService {
         this.quizQuestionList = quizQuestionDatabase.read();
     }
 
+    public static ElearningService getInstance(CourseDatabase courseDatabase,
+                                               LessonDatabase lessonDatabase,
+                                               StudentDatabase studentDatabase,
+                                               ProfessorDatabase professorDatabase,
+                                               QuizDatabase quizDatabase,
+                                               QuestionDatabase questionDatabase,
+                                               CourseLessonDatabase courseLessonDatabase,
+                                               CourseStudentDatabase courseStudentDatabase,
+                                               CourseProfessorDatabase courseProfessorDatabase,
+                                               CourseQuizDatabase courseQuizDatabase,
+                                               QuizQuestionDatabase quizQuestionDatabase) {
+        if (instance == null) {
+            instance = new ElearningService(courseDatabase, lessonDatabase, studentDatabase, professorDatabase, quizDatabase, questionDatabase,
+                    courseLessonDatabase, courseStudentDatabase, courseProfessorDatabase, courseQuizDatabase, quizQuestionDatabase);
+        }
+        return instance;
+    }
+
     public void createCourse(Scanner in) throws ParseException {
         Course newCourse = CourseFactory.createCourse(in);
         this.courseList.add(newCourse);
         this.courseDatabase.create(newCourse);
-        System.out.println("collections.Course " + newCourse.getTitle() + " has been added.");
+        System.out.println("Course " + newCourse.getTitle() + " has been added.");
     }
 
     public void showCourses() {
@@ -451,30 +470,35 @@ public class ElearningService {
     public void createLesson(Scanner in) throws ParseException {
         Lesson newLesson = LessonFactory.createLesson(in);
         this.lessonList.add(newLesson);
+        this.lessonDatabase.create(newLesson);
         System.out.println("Lesson " + newLesson.getTitle() + " has been added.");
     }
 
     public void createStudent(Scanner in) throws ParseException {
         Student newStudent = StudentFactory.createStudent(in);
         this.studentList.add(newStudent);
+        this.studentDatabase.create(newStudent);
         System.out.println("Student " + newStudent.getFirstName() + " has been added");
     }
 
     public void createProfessor(Scanner in) throws ParseException {
         Professor newProfessor = ProfessorFactory.createProfessor(in);
         this.professorList.add(newProfessor);
+        this.professorDatabase.create(newProfessor);
         System.out.println("Professor " + newProfessor.getFirstName() + " has been added");
     }
 
     public void createQuiz(Scanner in) {
         Quiz newQuiz = QuizFactory.createQuiz(in);
         this.quizList.add(newQuiz);
+        this.quizDatabase.create(newQuiz);
         System.out.println("Quiz " + newQuiz.getTitle() + " has been added");
     }
 
     public void createQuestion(Scanner in) {
         Question newQuestion = QuestionFactory.createQuestion(in);
         this.questionList.add(newQuestion);
+        this.questionDatabase.create(newQuestion);
         System.out.println("Question " + newQuestion.getStatement() + " has been added");
     }
 
@@ -561,6 +585,7 @@ public class ElearningService {
                             lessonFound = true;
                             CourseLesson courseLesson = new CourseLesson(course.getCourseId(), lesson.getLessonId());
                             this.courseLessonList.add(courseLesson);
+                            this.courseLessonDatabase.create(courseLesson);
                             break;
                         }
                     }
@@ -598,6 +623,7 @@ public class ElearningService {
                             studentFound = true;
                             CourseStudent courseStudent = new CourseStudent(course.getCourseId(), student.getStudentId());
                             this.courseStudentList.add(courseStudent);
+                            this.courseStudentDatabase.create(courseStudent);
                             break;
                         }
                     }
@@ -635,6 +661,7 @@ public class ElearningService {
                             professorFound = true;
                             CourseProfessor courseProfessor = new CourseProfessor(course.getCourseId(), professor.getProfessorId());
                             this.courseProfessorList.add(courseProfessor);
+                            this.courseProfessorDatabase.create(courseProfessor);
                             break;
                         }
                     }
@@ -673,6 +700,7 @@ public class ElearningService {
                             quizFound = true;
                             CourseQuiz courseQuiz = new CourseQuiz(course.getCourseId(), quiz.getQuizId());
                             this.courseQuizList.add(courseQuiz);
+                            this.courseQuizDatabase.create(courseQuiz);
                             break;
                         }
                     }
@@ -712,6 +740,7 @@ public class ElearningService {
                             questionFound = true;
                             QuizQuestion quizQuestion = new QuizQuestion(quiz.getQuizId(), question.getQuestionId());
                             this.quizQuestionList.add(quizQuestion);
+                            this.quizQuestionDatabase.create(quizQuestion);
                             break;
                         }
                     }

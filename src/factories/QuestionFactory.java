@@ -14,6 +14,6 @@ public class QuestionFactory {
     }
 
     public static Question createQuestion(ResultSet in) throws SQLException {
-        return new Question(id++, in);
+        return new Question(in);
     }
 }

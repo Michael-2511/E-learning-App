@@ -14,7 +14,7 @@ public class QuizQuestionFactory {
     }
 
     public static QuizQuestion createQuizQuestion(ResultSet in) throws SQLException {
-        return new QuizQuestion(id++, in);
+        return new QuizQuestion(in);
     }
 }
 

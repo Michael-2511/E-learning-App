@@ -30,6 +30,20 @@ public class QuestionDatabase {
         return questions;
     }
 
+    public void create(Question question) {
+        try {
+            String query = "INSERT INTO Question (questionId, statement, correctAnswer) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, question.getQuestionId());
+            preparedStatement.setString(2, question.getStatement());
+            preparedStatement.setString(3, question.getCorrectAnswer());
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void update(Question newQuestion) {
         try {
             String query = "UPDATE Question SET statement = ?, correctAnswer = ? WHERE questionId = ?";

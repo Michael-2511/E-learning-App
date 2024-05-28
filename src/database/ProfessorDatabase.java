@@ -28,6 +28,22 @@ public class ProfessorDatabase {
         return professors;
     }
 
+    public void create(Professor professor) {
+        try {
+            String query = "INSERT INTO Professor (professorId, firstName, lastName, email, experience) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, professor.getProfessorId());
+            preparedStatement.setString(2, professor.getFirstName());
+            preparedStatement.setString(3, professor.getLastName());
+            preparedStatement.setString(4, professor.getEmail());
+            preparedStatement.setInt(5, professor.getExperience());
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void update(Professor newProfessor) {
         try {
             String query = "UPDATE Professor SET firstName = ?, lastName = ?, email = ?, experience = ? WHERE professorId = ?";

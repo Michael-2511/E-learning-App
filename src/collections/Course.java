@@ -6,7 +6,7 @@ import java.text.ParseException;
 import java.util.*;
 
 public class Course {
-    private final int courseId;
+    private int courseId;
     private String title;
     public Course(int courseId, String title) {
         this.courseId = courseId;
@@ -18,8 +18,8 @@ public class Course {
         this.readData(in);
     }
 
-    public Course(int courseId, ResultSet in) throws SQLException {
-        this.courseId = courseId;
+    public Course(ResultSet in) throws SQLException {
+//        this.courseId = courseId;
         this.readData(in);
     }
 
@@ -30,6 +30,7 @@ public class Course {
     }
 
     public void readData(ResultSet in) throws SQLException {
+        this.courseId = in.getInt("courseId");
         this.title = in.getString("title");
     }
 

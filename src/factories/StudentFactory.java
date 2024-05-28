@@ -14,6 +14,6 @@ public class StudentFactory {
         return new Student(id++, in);
     }
     public static Student createStudent(ResultSet in) throws SQLException {
-        return new Student(id++, in);
+        return new Student(in);
     }
 }

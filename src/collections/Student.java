@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class Student implements Comparable<Student> {
-    private final int studentId;
+    private int studentId;
     private String firstName;
     private String lastName;
     private String email;
@@ -24,8 +24,8 @@ public class Student implements Comparable<Student> {
         this.readData(in);
     }
 
-    public Student(int studentId, ResultSet in) throws SQLException {
-        this.studentId = studentId;
+    public Student(ResultSet in) throws SQLException {
+//        this.studentId = studentId;
         this.readData(in);
     }
 
@@ -42,6 +42,7 @@ public class Student implements Comparable<Student> {
     }
 
     public void readData(ResultSet in) throws SQLException {
+        this.studentId = in.getInt("studentId");
         this.firstName = in.getString("firstName");
         this.lastName = in.getString("lastName");
         this.email = in.getString("email");

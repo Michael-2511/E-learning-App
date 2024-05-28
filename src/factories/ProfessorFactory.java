@@ -14,6 +14,6 @@ public class ProfessorFactory {
         return new Professor(id++, in);
     }
     public static Professor createProfessor(ResultSet in) throws SQLException {
-        return new Professor(id++, in);
+        return new Professor(in);
     }
 }

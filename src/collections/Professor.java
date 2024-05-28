@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Professor {
-    private final int professorId;
+    private int professorId;
     private String firstName;
     private String lastName;
     private String email;
@@ -24,8 +24,8 @@ public class Professor {
         this.readData(in);
     }
 
-    public Professor(int professorId, ResultSet in) throws SQLException {
-        this.professorId = professorId;
+    public Professor(ResultSet in) throws SQLException {
+//        this.professorId = professorId;
         this.readData(in);
     }
 
@@ -42,6 +42,7 @@ public class Professor {
     }
 
     public void readData(ResultSet in) throws SQLException {
+        this.professorId = in.getInt("professorId");
         this.firstName = in.getString("firstName");
         this.lastName = in.getString("lastName");
         this.email = in.getString("email");

@@ -29,6 +29,20 @@ public class LessonDatabase {
         return lessons;
     }
 
+    public void create(Lesson lesson) {
+        try {
+            String query = "INSERT INTO Lesson (lessonId, title, description) VALUES (?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, lesson.getLessonId());
+            preparedStatement.setString(2, lesson.getTitle());
+            preparedStatement.setString(3, lesson.getDescription());
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void update(Lesson newLesson) {
         try {
             String query = "UPDATE Lesson SET title = ?, description = ? WHERE lessonId = ?";

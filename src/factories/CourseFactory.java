@@ -19,6 +19,6 @@ public class CourseFactory {
     }
 
     public static Course createCourse(ResultSet in) throws SQLException {
-        return new Course(id++, in);
+        return new Course(in);
     }
 }

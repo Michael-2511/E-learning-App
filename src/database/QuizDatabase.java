@@ -30,6 +30,19 @@ public class QuizDatabase {
         return quizzes;
     }
 
+    public void create(Quiz quiz) {
+        try {
+            String query = "INSERT INTO Quiz (quizId, title) VALUES (?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, quiz.getQuizId());
+            preparedStatement.setString(2, quiz.getTitle());
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void update(Quiz newQuiz) {
         try {
             String query = "UPDATE Quiz SET title = ? WHERE quizId = ?";

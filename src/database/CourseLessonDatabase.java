@@ -30,11 +30,24 @@ public class CourseLessonDatabase {
         return courseLessons;
     }
 
+    public void create(CourseLesson courseLesson) {
+        try {
+            String query = "INSERT INTO CourseLesson (courseId, lessonId) VALUES (?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, courseLesson.courseId);
+            preparedStatement.setInt(2, courseLesson.lessonId);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void delete (CourseLesson courseLesson) {
         try {
-            String query = "DELETE FROM CourseLesson WHERE lessonId = ?";
+            String query = "DELETE FROM CourseLesson WHERE courseId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, courseLesson.lessonId);
+            preparedStatement.setInt(1, courseLesson.courseId);
             preparedStatement.execute();
             preparedStatement.close();
         } catch (SQLException e) {

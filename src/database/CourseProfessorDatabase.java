@@ -29,11 +29,26 @@ public class CourseProfessorDatabase {
         }
         return courseProfessors;
     }
+
+
+    public void create(CourseProfessor courseProfessor) {
+        try {
+            String query = "INSERT INTO CourseProfessor (courseId, professorId) VALUES (?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, courseProfessor.courseId);
+            preparedStatement.setInt(2, courseProfessor.professorId);
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void delete(CourseProfessor courseProfessor) {
         try {
-            String query = "DELETE FROM CourseProfessor WHERE professorId = ?";
+            String query = "DELETE FROM CourseProfessor WHERE courseId = ?";
             PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setInt(1, courseProfessor.professorId);
+            preparedStatement.setInt(1, courseProfessor.courseId);
             preparedStatement.execute();
             preparedStatement.close();
         } catch (SQLException e) {

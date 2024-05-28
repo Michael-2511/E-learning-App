@@ -28,6 +28,22 @@ public class StudentDatabase {
         return students;
     }
 
+    public void create(Student student) {
+        try {
+            String query = "INSERT INTO Student (studentId, firstName, lastName, email, studyYear) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setInt(1, student.getStudentId());
+            preparedStatement.setString(2, student.getFirstName());
+            preparedStatement.setString(3, student.getLastName());
+            preparedStatement.setString(4, student.getEmail());
+            preparedStatement.setInt(5, student.getStudyYear());
+            preparedStatement.execute();
+            preparedStatement.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public void update(Student newStudent) {
         try {
             String query = "UPDATE Student SET firstName = ?, lastName = ?, email = ?, studyYear = ? WHERE studentId = ?";
