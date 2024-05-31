@@ -8,7 +8,7 @@ import java.text.ParseException;
 import java.util.Scanner;
 
 public class StudentFactory {
-    private static int id = 1;
+    private static int id = 100;
 
     public static Student createStudent(Scanner in) throws ParseException {
         return new Student(id++, in);

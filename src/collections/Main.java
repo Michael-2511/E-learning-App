@@ -66,7 +66,7 @@ public class Main {
                 String command = in.nextLine().toLowerCase();
                 LocalDateTime timestamp = LocalDateTime.now();
                 try {
-                    csvWriter.append(timestamp.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME))
+                    csvWriter.append(timestamp.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
                             .append(",")
                             .append(command)
                             .append("\n");
